@@ -1,0 +1,22 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] res = new int[nums.length];
+
+        //PREFIX 
+        int prefix = 1;
+        res[0] =prefix;
+        for(int i =1;i<nums.length;i++){
+            prefix = prefix * nums[i-1];
+            res[i] = prefix;
+        }
+
+        //POSTFIX
+        prefix = 1;
+        // res[nums.length-1] = res[nums.length-1] * prefix;
+        for(int i= nums.length-2; i >= 0;i--){
+            prefix = prefix * nums[i+1];
+            res[i] = res[i] * prefix;
+        }
+        return res;
+    }
+}  
